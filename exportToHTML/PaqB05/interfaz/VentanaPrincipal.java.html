@@ -1,0 +1,228 @@
+<html>
+<head>
+<title>VentanaPrincipal.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #54b33e;}
+.s4 { color: #7ec3e6;}
+.s5 { color: #33ccff; font-weight: bold;}
+.s6 { color: #499936; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+VentanaPrincipal.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">PaqB05.interfaz</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">PaqB05.Contenedor</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">PaqB05.Hub</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">PaqB05.Puerto</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax.swing.*</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.ActionListener</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">VentanaPrincipal </span><span class="s0">extends </span><span class="s1">JFrame {</span>
+    <span class="s0">private </span><span class="s1">JTextField nIdentificacionTextField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JComboBox paisProcedenciaComboBox</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField pesoTextField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JRadioButton prioridadRadioButton1</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JRadioButton prioridadRadioButton2</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JRadioButton prioridadRadioButton3</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JCheckBox inspeccionadoCheckBox1</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextArea descContenidoTextArea1</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField empRemitenteTextField1</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField empReceptoraTextField1</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JLabel estadoJLabel</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextArea estadoTextArea</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JButton apilarButton1</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JButton desapilarButton</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JButton mostrarDatosContenedorButton</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JButton cuantosButton</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField nColumnaTextField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField idContenedorTextField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField cuentaPaisTxtField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JComboBox paisBusquedaComboBox</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">JPanel miPanel</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JLabel erroresJField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JRadioButton SeleccionarHubButton2</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JRadioButton SeleccionarHubButton1</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JRadioButton SeleccionarHubButton3</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">Puerto puerto</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String[] paises = {</span><span class="s3">&quot;Afganistán&quot;</span><span class="s2">,</span><span class="s3">&quot;Albania&quot;</span><span class="s2">,</span><span class="s3">&quot;Alemania&quot;</span><span class="s2">,</span><span class="s3">&quot;Andorra&quot;</span><span class="s2">,</span><span class="s3">&quot;Angola&quot;</span><span class="s2">,</span><span class="s3">&quot;Antigua y Barbuda&quot;</span><span class="s2">, </span><span class="s3">&quot;Arabia Saudita&quot;</span><span class="s2">,</span><span class="s3">&quot;Argelia&quot;</span><span class="s2">,</span><span class="s3">&quot;Argentina&quot;</span><span class="s2">,</span><span class="s3">&quot;Armenia&quot;</span><span class="s2">,</span><span class="s3">&quot;Australia&quot;</span><span class="s2">,</span><span class="s3">&quot;Austria&quot;</span><span class="s2">,</span><span class="s3">&quot;Azerbaiyán&quot;</span><span class="s2">,</span><span class="s3">&quot;Bahamas&quot;</span><span class="s2">,</span><span class="s3">&quot;Bangladés&quot;</span><span class="s2">,</span><span class="s3">&quot;Barbados&quot;</span><span class="s2">,</span><span class="s3">&quot;Baréin&quot;</span><span class="s2">,</span><span class="s3">&quot;Bélgica&quot;</span><span class="s2">,</span><span class="s3">&quot;Belice&quot;</span><span class="s2">,</span><span class="s3">&quot;Benín&quot;</span><span class="s2">,</span><span class="s3">&quot;Bielorrusia&quot;</span><span class="s2">,</span><span class="s3">&quot;Birmania&quot;</span><span class="s2">,</span><span class="s3">&quot;Bolivia&quot;</span><span class="s2">,</span><span class="s3">&quot;Bosnia y Herzegovina&quot;</span><span class="s2">,</span><span class="s3">&quot;Botsuana&quot;</span><span class="s2">,</span><span class="s3">&quot;Brasil&quot;</span><span class="s2">,</span><span class="s3">&quot;Brunéi&quot;</span><span class="s2">,</span><span class="s3">&quot;Bulgaria&quot;</span><span class="s2">,</span><span class="s3">&quot;Burkina Faso&quot;</span><span class="s2">,</span><span class="s3">&quot;Burundi&quot;</span><span class="s2">,</span><span class="s3">&quot;Bután&quot;</span><span class="s2">,</span><span class="s3">&quot;Cabo Verde&quot;</span><span class="s2">,</span><span class="s3">&quot;Camboya&quot;</span><span class="s2">,</span><span class="s3">&quot;Camerún&quot;</span><span class="s2">,</span><span class="s3">&quot;Canadá&quot;</span><span class="s2">,</span><span class="s3">&quot;Catar&quot;</span><span class="s2">,</span><span class="s3">&quot;Chad&quot;</span><span class="s2">,</span><span class="s3">&quot;Chile&quot;</span><span class="s2">,</span><span class="s3">&quot;China&quot;</span><span class="s2">,</span><span class="s3">&quot;Chipre&quot;</span><span class="s2">,</span><span class="s3">&quot;Ciudad del Vaticano&quot;</span><span class="s2">,</span><span class="s3">&quot;Colombia&quot;</span><span class="s2">,</span><span class="s3">&quot;Comoras&quot;</span><span class="s2">,</span><span class="s3">&quot;Corea del Norte&quot;</span><span class="s2">,</span><span class="s3">&quot;Corea del Sur&quot;</span><span class="s2">,</span><span class="s3">&quot;Costa de Marfil&quot;</span><span class="s2">,</span><span class="s3">&quot;Costa Rica&quot;</span><span class="s2">,</span><span class="s3">&quot;Croacia&quot;</span><span class="s2">,</span><span class="s3">&quot;Cuba&quot;</span><span class="s2">,</span><span class="s3">&quot;Dinamarca&quot;</span><span class="s2">,</span><span class="s3">&quot;Dominica&quot;</span><span class="s2">,</span><span class="s3">&quot;Ecuador&quot;</span><span class="s2">,</span><span class="s3">&quot;Egipto&quot;</span><span class="s2">,</span><span class="s3">&quot;El Salvador&quot;</span><span class="s2">,</span><span class="s3">&quot;Emiratos Árabes Unidos&quot;</span><span class="s2">,</span><span class="s3">&quot;Eritrea&quot;</span><span class="s2">,</span><span class="s3">&quot;Eslovaquia&quot;</span><span class="s2">,</span><span class="s3">&quot;Eslovenia&quot;</span><span class="s2">,</span><span class="s3">&quot;España&quot;</span><span class="s2">,</span><span class="s3">&quot;Estados Unidos&quot;</span><span class="s2">,</span><span class="s3">&quot;Estonia&quot;</span><span class="s2">,</span><span class="s3">&quot;Etiopía&quot;</span><span class="s2">,</span><span class="s3">&quot;Filipinas&quot;</span><span class="s2">,</span><span class="s3">&quot;Finlandia&quot;</span><span class="s2">,</span><span class="s3">&quot;Fiyi&quot;</span><span class="s2">,</span><span class="s3">&quot;Francia&quot;</span><span class="s2">,</span><span class="s3">&quot;Gabón&quot;</span><span class="s2">,</span><span class="s3">&quot;Gambia&quot;</span><span class="s2">,</span><span class="s3">&quot;Georgia&quot;</span><span class="s2">,</span><span class="s3">&quot;Ghana&quot;</span><span class="s2">,</span><span class="s3">&quot;Granada&quot;</span><span class="s2">,</span><span class="s3">&quot;Grecia&quot;</span><span class="s2">,</span><span class="s3">&quot;Guatemala&quot;</span><span class="s2">,</span><span class="s3">&quot;Guyana&quot;</span><span class="s2">,</span><span class="s3">&quot;Guinea&quot;</span><span class="s2">,</span><span class="s3">&quot;Guinea ecuatorial&quot;</span><span class="s2">,</span><span class="s3">&quot;Guinea-Bisáu&quot;</span><span class="s2">,</span><span class="s3">&quot;Haití&quot;</span><span class="s2">,</span><span class="s3">&quot;Honduras&quot;</span><span class="s2">,</span><span class="s3">&quot;Hungría&quot;</span><span class="s2">,</span><span class="s3">&quot;India&quot;</span><span class="s2">,</span><span class="s3">&quot;Indonesia&quot;</span><span class="s2">,</span><span class="s3">&quot;Irak&quot;</span><span class="s2">,</span><span class="s3">&quot;Irán&quot;</span><span class="s2">,</span><span class="s3">&quot;Irlanda&quot;</span><span class="s2">,</span><span class="s3">&quot;Islandia&quot;</span><span class="s2">,</span><span class="s3">&quot;Islas Marshall&quot;</span><span class="s2">,</span><span class="s3">&quot;Islas Salomón&quot;</span><span class="s2">,</span><span class="s3">&quot;Israel&quot;</span><span class="s2">,</span><span class="s3">&quot;Italia&quot;</span><span class="s2">,</span><span class="s3">&quot;Jamaica&quot;</span><span class="s2">,</span><span class="s3">&quot;Japón&quot;</span><span class="s2">,</span><span class="s3">&quot;Jordania&quot;</span><span class="s2">,</span><span class="s3">&quot;Kazajistán&quot;</span><span class="s2">,</span><span class="s3">&quot;Kenia&quot;</span><span class="s2">,</span><span class="s3">&quot;Kirguistán&quot;</span><span class="s2">,</span><span class="s3">&quot;Kiribati&quot;</span><span class="s2">,</span><span class="s3">&quot;Kuwait&quot;</span><span class="s2">,</span><span class="s3">&quot;Laos&quot;</span><span class="s2">,</span><span class="s3">&quot;Lesoto&quot;</span><span class="s2">,</span><span class="s3">&quot;Letonia&quot;</span><span class="s2">,</span><span class="s3">&quot;Líbano&quot;</span><span class="s2">,</span><span class="s3">&quot;Liberia&quot;</span><span class="s2">,</span><span class="s3">&quot;Libia&quot;</span><span class="s2">,</span><span class="s3">&quot;Liechtenstein&quot;</span><span class="s2">,</span><span class="s3">&quot;Lituania&quot;</span><span class="s2">,</span><span class="s3">&quot;Luxemburgo&quot;</span><span class="s2">,</span><span class="s3">&quot;Madagascar&quot;</span><span class="s2">,</span><span class="s3">&quot;Malasia&quot;</span><span class="s2">,</span><span class="s3">&quot;Malaui&quot;</span><span class="s2">,</span><span class="s3">&quot;Maldivas&quot;</span><span class="s2">,</span><span class="s3">&quot;Malí&quot;</span><span class="s2">,</span><span class="s3">&quot;Malta&quot;</span><span class="s2">,</span><span class="s3">&quot;Marruecos&quot;</span><span class="s2">,</span><span class="s3">&quot;Mauricio&quot;</span><span class="s2">,</span><span class="s3">&quot;Mauritania&quot;</span><span class="s2">,</span><span class="s3">&quot;México&quot;</span><span class="s2">,</span><span class="s3">&quot;Micronesia&quot;</span><span class="s2">,</span><span class="s3">&quot;Moldavia&quot;</span><span class="s2">,</span><span class="s3">&quot;Mónaco&quot;</span><span class="s2">,</span><span class="s3">&quot;Mongolia&quot;</span><span class="s2">,</span><span class="s3">&quot;Montenegro&quot;</span><span class="s2">,</span><span class="s3">&quot;Mozambique&quot;</span><span class="s2">,</span><span class="s3">&quot;Namibia&quot;</span><span class="s2">,</span><span class="s3">&quot;Nauru&quot;</span><span class="s2">,</span><span class="s3">&quot;Nepal&quot;</span><span class="s2">,</span><span class="s3">&quot;Nicaragua&quot;</span><span class="s2">,</span><span class="s3">&quot;Níger&quot;</span><span class="s2">,</span><span class="s3">&quot;Nigeria&quot;</span><span class="s2">,</span><span class="s3">&quot;Noruega&quot;</span><span class="s2">,</span><span class="s3">&quot;Nueva Zelanda&quot;</span><span class="s2">,</span><span class="s3">&quot;Omán&quot;</span><span class="s2">,</span><span class="s3">&quot;Países Bajos&quot;</span><span class="s2">,</span><span class="s3">&quot;Pakistán&quot;</span><span class="s2">,</span><span class="s3">&quot;Palaos&quot;</span><span class="s2">,</span><span class="s3">&quot;Palestina&quot;</span><span class="s2">,</span><span class="s3">&quot;Panamá&quot;</span><span class="s2">,</span><span class="s3">&quot;Papúa Nueva Guinea&quot;</span><span class="s2">,</span><span class="s3">&quot;Paraguay&quot;</span><span class="s2">,</span><span class="s3">&quot;Perú&quot;</span><span class="s2">,</span><span class="s3">&quot;Polonia&quot;</span><span class="s2">,</span><span class="s3">&quot;Portugal&quot;</span><span class="s2">,</span><span class="s3">&quot;Reino Unido&quot;</span><span class="s2">,</span><span class="s3">&quot;República Centroafricana&quot;</span><span class="s2">,</span><span class="s3">&quot;República Checa&quot;</span><span class="s2">,</span><span class="s3">&quot;República de Macedonia&quot;</span><span class="s2">,</span><span class="s3">&quot;República del Congo&quot;</span><span class="s2">,</span><span class="s3">&quot;República Democrática del Congo&quot;</span><span class="s2">,</span><span class="s3">&quot;República Dominicana&quot;</span><span class="s2">,</span><span class="s3">&quot;República Sudafricana&quot;</span><span class="s2">,</span><span class="s3">&quot;Ruanda&quot;</span><span class="s2">,</span><span class="s3">&quot;Rumanía&quot;</span><span class="s2">,</span><span class="s3">&quot;Rusia&quot;</span><span class="s2">,</span><span class="s3">&quot;Samoa&quot;</span><span class="s2">,</span><span class="s3">&quot;San Cristóbal y Nieves&quot;</span><span class="s2">,</span><span class="s3">&quot;San Marino&quot;</span><span class="s2">,</span><span class="s3">&quot;San Vicente y las Granadinas&quot;</span><span class="s2">,</span><span class="s3">&quot;Santa Lucía&quot;</span><span class="s2">,</span><span class="s3">&quot;Santo Tomé y Príncipe&quot;</span><span class="s2">,</span><span class="s3">&quot;Senegal&quot;</span><span class="s2">,</span><span class="s3">&quot;Serbia&quot;</span><span class="s2">,</span><span class="s3">&quot;Seychelles&quot;</span><span class="s2">,</span><span class="s3">&quot;Sierra Leona&quot;</span><span class="s2">,</span><span class="s3">&quot;Singapur&quot;</span><span class="s2">,</span><span class="s3">&quot;Siria&quot;</span><span class="s2">,</span><span class="s3">&quot;Somalia&quot;</span><span class="s2">,</span><span class="s3">&quot;Sri Lanka&quot;</span><span class="s2">,</span><span class="s3">&quot;Suazilandia&quot;</span><span class="s2">,</span><span class="s3">&quot;Sudán&quot;</span><span class="s2">,</span><span class="s3">&quot;Sudán del Sur&quot;</span><span class="s2">,</span><span class="s3">&quot;Suecia&quot;</span><span class="s2">,</span><span class="s3">&quot;Suiza&quot;</span><span class="s2">,</span><span class="s3">&quot;Surinam&quot;</span><span class="s2">,</span><span class="s3">&quot;Tailandia&quot;</span><span class="s2">,</span><span class="s3">&quot;Tanzania&quot;</span><span class="s2">,</span><span class="s3">&quot;Tayikistán&quot;</span><span class="s2">,</span><span class="s3">&quot;Timor Oriental&quot;</span><span class="s2">,</span><span class="s3">&quot;Togo&quot;</span><span class="s2">,</span><span class="s3">&quot;Tonga&quot;</span><span class="s2">,</span><span class="s3">&quot;Trinidad y Tobago&quot;</span><span class="s2">,</span><span class="s3">&quot;Túnez&quot;</span><span class="s2">,</span><span class="s3">&quot;Turkmenistán&quot;</span><span class="s2">,</span><span class="s3">&quot;Turquía&quot;</span><span class="s2">,</span><span class="s3">&quot;Tuvalu&quot;</span><span class="s2">,</span><span class="s3">&quot;Ucrania&quot;</span><span class="s2">,</span><span class="s3">&quot;Uganda&quot;</span><span class="s2">,</span><span class="s3">&quot;Uruguay&quot;</span><span class="s2">,</span><span class="s3">&quot;Uzbekistán&quot;</span><span class="s2">,</span><span class="s3">&quot;Vanuatu&quot;</span><span class="s2">,</span><span class="s3">&quot;Venezuela&quot;</span><span class="s2">,</span><span class="s3">&quot;Vietnam&quot;</span><span class="s2">,</span><span class="s3">&quot;Yemen&quot;</span><span class="s2">,</span><span class="s3">&quot;Yibuti&quot;</span><span class="s2">,</span><span class="s3">&quot;Zambia&quot;</span><span class="s2">,</span><span class="s3">&quot;Zimbabue&quot;</span><span class="s1">}</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">numHub</span><span class="s2">;                         </span><span class="s4">// Hub de contenedores actual</span>
+    <span class="s0">private </span><span class="s1">VentanaInfContenedor info</span><span class="s2">;          </span><span class="s4">// Ventana de información, para el cambio de paneles</span>
+    <span class="s0">private </span><span class="s1">VentanaPrincipal estaVentana</span><span class="s2">;       </span><span class="s4">// Puntero al objeto de esta propia ventana, para el cambio de paneles</span>
+
+    <span class="s0">public </span><span class="s1">VentanaPrincipal(Puerto puerto) {</span>
+        <span class="s4">// Añadimos el listado de países a los Combo Box</span>
+        <span class="s1">paisProcedenciaComboBox.setModel(</span><span class="s0">new </span><span class="s1">DefaultComboBoxModel(paises))</span><span class="s2">;</span>
+        <span class="s1">paisBusquedaComboBox.setModel(</span><span class="s0">new </span><span class="s1">DefaultComboBoxModel(paises))</span><span class="s2">;</span>
+
+        <span class="s4">// Opciones de la ventana</span>
+        <span class="s1">setContentPane(miPanel)</span><span class="s2">;</span>
+        <span class="s1">setTitle(</span><span class="s3">&quot;Gestión de contenedores&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)</span><span class="s2">;</span>
+        <span class="s1">setVisible(</span><span class="s0">true</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">setIconImage(</span><span class="s0">new </span><span class="s1">ImageIcon(</span><span class="s3">&quot;src/PaqB05/interfaz/contenedores.png&quot;</span><span class="s1">).getImage())</span><span class="s2">;</span>
+        <span class="s1">pack()</span><span class="s2">;</span>
+
+        <span class="s0">this</span><span class="s1">.numHub = </span><span class="s5">1</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s1">.SeleccionarHubButton1.setSelected(</span><span class="s0">true</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s1">.puerto = puerto</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s1">.nIdentificacionTextField.setText(</span><span class="s3">&quot;&quot; </span><span class="s1">+ Hub.getNumContenedor())</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s1">.estaVentana = </span><span class="s0">this</span><span class="s2">;</span>
+        <span class="s1">actualizarEstado()</span><span class="s2">;</span>
+
+        <span class="s4">// ActionListener para apilar un contenedor con los datos indicados</span>
+        <span class="s1">apilarButton1.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s0">int </span><span class="s1">prioridad</span><span class="s2">;</span>
+
+                <span class="s0">if </span><span class="s1">(prioridadRadioButton1.isSelected()) {</span>
+                    <span class="s1">prioridad = </span><span class="s5">1</span><span class="s2">;</span>
+                <span class="s1">} </span><span class="s0">else if </span><span class="s1">(prioridadRadioButton2.isSelected()) {</span>
+                    <span class="s1">prioridad = </span><span class="s5">2</span><span class="s2">;</span>
+                <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                    <span class="s1">prioridad = </span><span class="s5">3</span><span class="s2">;</span>
+                <span class="s1">}</span>
+
+                <span class="s4">// Creamos el contenedor con los datos introducidos por el usuario</span>
+                <span class="s1">Contenedor contenedor = </span><span class="s0">new </span><span class="s1">Contenedor(</span>
+                        <span class="s1">Integer.parseInt(((!pesoTextField.getText().isEmpty()) ? pesoTextField.getText() : </span><span class="s3">&quot;0&quot;</span><span class="s1">))</span><span class="s2">,</span>
+                        <span class="s1">(String)paisProcedenciaComboBox.getSelectedItem()</span><span class="s2">,</span>
+                        <span class="s1">inspeccionadoCheckBox1.isSelected()</span><span class="s2">,</span>
+                        <span class="s1">prioridad</span><span class="s2">,</span>
+                        <span class="s1">descContenidoTextArea1.getText()</span><span class="s2">,</span>
+                        <span class="s1">empRemitenteTextField1.getText()</span><span class="s2">,</span>
+                        <span class="s1">empReceptoraTextField1.getText()</span>
+                <span class="s1">)</span><span class="s2">;</span>
+
+                <span class="s0">if </span><span class="s1">(puerto.insertarEnHub(contenedor</span><span class="s2">, </span><span class="s1">numHub)) {</span>
+                    <span class="s1">erroresJField.setText(</span><span class="s3">&quot;¡Contenedor apilado!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                    <span class="s1">nIdentificacionTextField.setText(</span><span class="s3">&quot;&quot; </span><span class="s1">+ Hub.getNumContenedor())</span><span class="s2">;</span>
+                    <span class="s1">actualizarEstado()</span><span class="s2">;</span>
+                <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                    <span class="s1">erroresJField.setText(</span><span class="s3">&quot;[ERROR] No hay espacio para apilar. Selecciona otro Hub.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+
+        <span class="s4">// ActionListeners para el cambio de prioridad del contenedor</span>
+        <span class="s1">prioridadRadioButton1.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s1">prioridadRadioButton2.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">prioridadRadioButton3.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+        <span class="s1">prioridadRadioButton2.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s1">prioridadRadioButton1.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">prioridadRadioButton3.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+        <span class="s1">prioridadRadioButton3.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s1">prioridadRadioButton1.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">prioridadRadioButton2.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+
+        <span class="s4">// ActionListener para calcular la cantidad total de contenedores (de todo el puerto) que provienen de un determinado país</span>
+        <span class="s1">cuantosButton.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s1">cuentaPaisTxtField.setText(</span><span class="s3">&quot;&quot; </span><span class="s1">+ puerto.buscarPorPais(</span>
+                        <span class="s1">paisBusquedaComboBox.getSelectedItem().toString())</span>
+                <span class="s1">)</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+
+        <span class="s4">// ActionListener para desapilar el primer contenedor de la columna indicada.</span>
+        <span class="s1">desapilarButton.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s0">if </span><span class="s1">(nColumnaTextField.getText().isEmpty()) {</span>
+                    <span class="s1">erroresJField.setText(</span><span class="s3">&quot;[ERROR] Indica un número de columna.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                    <span class="s0">if </span><span class="s1">(puerto.desapilar(Integer.parseInt(nColumnaTextField.getText())</span><span class="s2">, </span><span class="s1">numHub)) {</span>
+                        <span class="s1">erroresJField.setText(</span><span class="s3">&quot;¡Desapilado!&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                        <span class="s1">actualizarEstado()</span><span class="s2">;</span>
+                    <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                        <span class="s1">erroresJField.setText(</span><span class="s3">&quot;[ERROR] No se ha podido desapilar ningún contenedor.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                    <span class="s1">}</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+
+        <span class="s4">// ActionListener para mostrar los datos del Contenedor con el identificador indicado.</span>
+        <span class="s1">mostrarDatosContenedorButton.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s1">Contenedor contenedor =</span>
+                        <span class="s1">puerto.buscarContenedor(Integer.parseInt(idContenedorTextField.getText())</span><span class="s2">,</span>
+                                <span class="s1">numHub)</span><span class="s2">;</span>
+
+                <span class="s0">if </span><span class="s1">(contenedor != </span><span class="s0">null</span><span class="s1">) {</span>
+                    <span class="s1">info = </span><span class="s0">new </span><span class="s1">VentanaInfContenedor(estaVentana)</span><span class="s2">;</span>
+                    <span class="s1">info.asignarDatos(contenedor)</span><span class="s2">;</span>
+                    <span class="s1">setContentPane(info.miPanel)</span><span class="s2">;</span>
+                    <span class="s1">repaint()</span><span class="s2">;</span>
+                <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                    <span class="s1">erroresJField.setText(</span><span class="s3">&quot;[ERROR] No se ha encontrado el contenedor en el hub. Prueba a &quot; </span><span class="s1">+</span>
+                            <span class="s3">&quot;seleccionar otro hub para buscar en él.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+
+        <span class="s4">// ActionListeners para la selección de Hub</span>
+        <span class="s1">SeleccionarHubButton1.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s1">SeleccionarHubButton2.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">SeleccionarHubButton3.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">numHub = </span><span class="s5">1</span><span class="s2">;</span>
+                <span class="s1">actualizarEstado()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+        <span class="s1">SeleccionarHubButton2.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s1">SeleccionarHubButton1.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">SeleccionarHubButton3.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">numHub = </span><span class="s5">2</span><span class="s2">;</span>
+                <span class="s1">actualizarEstado()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+        <span class="s1">SeleccionarHubButton3.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s1">SeleccionarHubButton2.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">SeleccionarHubButton1.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+                <span class="s1">numHub = </span><span class="s5">3</span><span class="s2">;</span>
+                <span class="s1">actualizarEstado()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s6">/**</span>
+     <span class="s6">* Actualiza el estado del mapa de contenedores del Hub actual.</span>
+     <span class="s6">*/</span>
+    <span class="s0">private void </span><span class="s1">actualizarEstado() {</span>
+        <span class="s1">estadoTextArea.setText(puerto.getHub(numHub-</span><span class="s5">1</span><span class="s1">).toString())</span><span class="s2">;</span>
+        <span class="s1">estadoJLabel.setText(</span><span class="s3">&quot;Estado (Libre u Ocupado) - Hub &quot; </span><span class="s1">+ (numHub))</span><span class="s2">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

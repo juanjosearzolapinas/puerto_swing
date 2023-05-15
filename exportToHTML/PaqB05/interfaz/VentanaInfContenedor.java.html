@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>VentanaInfContenedor.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #7ec3e6;}
+.s4 { color: #54b33e;}
+.s5 { color: #499936; font-style: italic;}
+.s6 { color: #499936; font-weight: bold; font-style: italic;}
+.s7 { color: #33ccff; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+VentanaInfContenedor.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">PaqB05.interfaz</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax.swing.*</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">PaqB05.Contenedor</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java.awt.event.ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.ActionListener</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">VentanaInfContenedor </span><span class="s0">extends </span><span class="s1">JFrame {</span>
+    <span class="s0">public </span><span class="s1">JPanel miPanel</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField nIdentificacionTextField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField pesoTextField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextArea descTextArea</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField empRemitenteTextField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField empReceptoraTextField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField procedenciaTextField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JRadioButton prioridad1RadioButton</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JRadioButton prioridad2RadioButton</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JRadioButton prioridad3RadioButton</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JCheckBox inspeccionadoEnAduanasCheckBox</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JButton atrasButton</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">VentanaPrincipal principal</span><span class="s2">;         </span><span class="s3">// VentanaPrincipal, para volver a ella cuando el usuario haya finalizado de consultar los datos de un contenedor</span>
+
+    <span class="s0">public </span><span class="s1">VentanaInfContenedor(VentanaPrincipal v) {</span>
+        <span class="s1">setContentPane(miPanel)</span><span class="s2">;</span>
+        <span class="s1">setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE)</span><span class="s2">;</span>
+        <span class="s1">pack()</span><span class="s2">;</span>
+        <span class="s1">setVisible(</span><span class="s0">false</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">setIconImage(</span><span class="s0">new </span><span class="s1">ImageIcon(</span><span class="s4">&quot;src/PaqB05/interfaz/contenedores.png&quot;</span><span class="s1">).getImage())</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s1">.principal = v</span><span class="s2">;</span>
+
+        <span class="s3">// ActionListener para volver al panel principal</span>
+        <span class="s1">atrasButton.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+                <span class="s1">principal.setContentPane(principal.miPanel)</span><span class="s2">;</span>
+                <span class="s1">repaint()</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s5">/**</span>
+     <span class="s5">* Asigna a los campos de este panel los datos que contenga el objeto Contenedor pasado como parámetro.</span>
+     <span class="s5">* </span><span class="s6">@param </span><span class="s5">c Contenedor a mostrar</span>
+     <span class="s5">*/</span>
+    <span class="s0">public void </span><span class="s1">asignarDatos(Contenedor c) {</span>
+        <span class="s1">nIdentificacionTextField.setText(</span><span class="s4">&quot;&quot; </span><span class="s1">+ c.getIdentificador())</span><span class="s2">;</span>
+        <span class="s1">pesoTextField.setText(</span><span class="s4">&quot;&quot; </span><span class="s1">+ c.getPeso())</span><span class="s2">;</span>
+        <span class="s1">descTextArea.setText(c.getDescripcion())</span><span class="s2">;</span>
+        <span class="s1">empRemitenteTextField.setText(c.getRemitente())</span><span class="s2">;</span>
+        <span class="s1">empReceptoraTextField.setText(c.getReceptor())</span><span class="s2">;</span>
+
+        <span class="s0">if </span><span class="s1">(c.getPrioridad() == </span><span class="s7">1</span><span class="s1">) {</span>
+            <span class="s1">prioridad1RadioButton.setSelected(</span><span class="s0">true</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else if </span><span class="s1">(c.getPrioridad() == </span><span class="s7">2</span><span class="s1">) {</span>
+            <span class="s1">prioridad2RadioButton.setSelected(</span><span class="s0">true</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">prioridad3RadioButton.setSelected(</span><span class="s0">true</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">}</span>
+
+        <span class="s0">if </span><span class="s1">(c.isAduanas()) {</span>
+            <span class="s1">inspeccionadoEnAduanasCheckBox.setSelected(</span><span class="s0">true</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">procedenciaTextField.setText(c.getProcedencia())</span><span class="s2">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
