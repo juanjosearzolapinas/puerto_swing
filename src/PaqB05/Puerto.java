@@ -59,4 +59,22 @@ public class Puerto {
     public Contenedor buscarContenedor(int id, int numHub) {
         return this.hubs[numHub-1].mostrarDatos(id);
     }
+
+
+    public int Prioritarios2(int prioridad){
+
+        int contador = 0;
+
+        for (int i = 0; i < hubs.length; i++) {
+
+            contador = hubs[i].Prioritarios(prioridad);
+
+        }
+
+        return contador;
+
+    }
+
+
+
 }
